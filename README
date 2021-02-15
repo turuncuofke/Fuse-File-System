@@ -1,0 +1,16 @@
+FUSE File System Project: Represents a json file as a file system. cJSON library is used for JSON Parsing. Chechk the link https://github.com/DaveGamble/cJSON for details. 
+
+"gcc project_main.c -o main -D_FILE_OFFSET_BITS=64 -l fuse" to compile,
+"./main /<mount_directory>" to run in normal mode,
+"./main -d /<mount_directory>" to run in debug mode,
+"fusermount -u /<mount_directory>" to unmount,
+<mount_directory> can be something like /home/taner/Desktop/new
+
+
+Project_Main.c : json and buffer are global variables. Reads the example.json file in main function. Works without debug mode. When we delete a file it deletes that files but does not write the changes to the json file. If you want to make changes in the json file you need to uncomment the lines between 201-208 and run it in debug mode. (If you comment the lines 201-28 it works without debug mode)
+
+
+Project_With_Debug.c : Another approach, in every fuse function the example.json file is opened and when a file is deleted it is also deleted from the json file. But only works in debug mode.
+
+
+
